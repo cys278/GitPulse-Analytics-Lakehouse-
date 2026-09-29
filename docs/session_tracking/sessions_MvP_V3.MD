@@ -1,0 +1,118 @@
+# Session tracking notes for MvP v3
+**Done**
+
+**Saturday 18/04-2026**
+*Goals for today:*
+- Setup `docker-compose.yml` file to be able to run `PySpark` in the same container as `producer`, `consumer` and `kafka`.
+    - **Done**
+
+- Write docs regarding `Spark` and `docker-compose`, `dbt` and `Airflow`
+    - **Done**
+
+---
+**Sunday 19/04-2026**
+*Goals for today:*
+- Get all set up for scripts. That will include:
+    - deps
+    - `dbt_project.yml`
+    - `profiles.yml`(DuckDB config)
+    - `dbt debug` to verify that everything is able to talk to eachother.
+        - **Done**
+
+- Start to write my staging model. `stg_github_events.sql`, this will read my silver parquet files. This is the foundation that all my mart-models will be built upon.
+    - **Done**
+
+- Write my first mart `tool_growth.sql`
+    - **Done**
+
+- Write own docs/notes regarding `dbt` and `DuckDB` + `tool_growth.sql` script
+    - **Done**
+
+---
+**Monday 20/04-2026**
+*Goals for today:*
+- Start writing on my `activity_heatmap.sql` and `pr_cycle_times.sql` dbt marts.
+    - **Done**
+
+- Write own docs/notes regarding `activity_heatmap.sql`, `pr_cycle_times.sql` and more details about `dbt`
+    - *ongoing*
+
+---
+**Wednesday 22/04-2026**
+*Goals for today:*
+- Containerise DBT in Docker and test it to make sure everything runs smoothly.
+    - **Done**
+
+- Write more comprehensive docs regarding docker and dbt. More theory is needed.
+    - *ongoing*
+
+---
+**Friday 01/05, Saturday 02/05, Sunday 03/05-2026**
+*Goals for weekend:*
+- Setup Airflow DAG
+    - **Done**
+
+- Containerize Airflow and update `docker-compose-yml`
+    - **Done**
+
+- Write Airflow and DAG docs
+    - **Done**
+
+- Write first DAGs script `github_lake_dag.py`
+    - **Done**
+    
+- Start working on serving layer with `grafana`
+    - *Ongoing* 
+
+---
+**Thusday 07/05-2026**  
+*Goals for today:*  
+- Refactor `bronze_to_silver.py`-script, optimize its writing to avoid I/O bottlenecks when writing files. Need to write less files from events and not just 1 by 1. Bunch several files together and write one file. One file per each day from bronze -> Silver could be enough?
+    - **Done**
+
+- Mount `checkpoint`-file to not need to read in ALL files once more when running Airflow DAGs.
+    - *ongoing*
+
+---
+**Wednesday 13/05-2026**
+*Goals for today:*
+- Start working on serving layer with `Grafana`-dashboard and get it working.
+    - **Done**
+
+---
+**Saturday 16/05-2026**
+*Goals for today:*
+
+- Write own docs regarding `Grafana` and its purpose for better understanding.
+    - **Done**
+
+
+- Setup Grafana dashboard, get it to working despite not supporting `DuckDB` natively.
+    - **Done**
+
+
+- Containerise `grafana` and get it to work within my container(Update `Docker-compose.yml`)
+    - **Done**
+
+--- 
+**Sunday 17/05-2026**
+*Goals for today:*
+
+- Get `Grafana`-graphs to show correct values (`activity heatmap` + `pr cycle times`)
+    - **Done**
+
+- Clean up repo, update Roadmap, brainstorm upcoming MVP versions
+    - **Done**
+
+- 
+
+---
+
+- Start planning on next steps for MVP v4 and beyond.
+    - More questions that needs to be answered from the data.
+    - Bots vs humans
+    - Expand the data lake to maybe look for more data from github API + github archives
+
+    - Incorporate a vector DB + embeddings to introduce a layer of RAG over my entire data lake
+        - Retrieve or run queries on data for more insights with said models?
+        
